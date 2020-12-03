@@ -6,14 +6,14 @@ cd ${project.build.directory}
 parcel_name="${project.build.finalName}"
 mkdir $parcel_name
 
-jdk_download_url="http://download.oracle.com/otn-pub/java/jdk/${jdk.version}-${jdk.build}/jdk-${jdk.version}-linux-x64.tar.gz"
-jdk_download_name="jdk.tar.gz"
-curl -L -o $jdk_download_name -H "Cookie: oraclelicense=accept-securebackup-cookie" $jdk_download_url
-decompressed_dir="extract"
-mkdir $decompressed_dir
-tar xzf $jdk_download_name -C $decompressed_dir
-mv $decompressed_dir/$(\ls $decompressed_dir) $parcel_name/jdk
-rm -rf $decompressed_dir
+#jdk_download_url="http://download.oracle.com/otn-pub/java/jdk/${jdk.version}-${jdk.build}/jdk-${jdk.version}-linux-x64.tar.gz"
+#jdk_download_name="jdk.tar.gz"
+#curl -L -o $jdk_download_name -H "Cookie: oraclelicense=accept-securebackup-cookie" $jdk_download_url
+#decompressed_dir="extract"
+#mkdir $decompressed_dir
+#tar xzf $jdk_download_name -C $decompressed_dir
+#mv $decompressed_dir/$(\ls $decompressed_dir) $parcel_name/jdk
+#rm -rf $decompressed_dir
 
 
 presto_download_name="presto.tar.gz"
@@ -55,7 +55,7 @@ cp -a ${project.build.outputDirectory}/meta ${parcel_name}
 tar zcf ${parcel_name}.parcel ${parcel_name}/ --owner=root --group=root
 
 mkdir repository
-for i in el5 el6 sles11 lucid precise squeeze wheezy; do
+for i in el5 el6 el7 sles11 lucid precise squeeze wheezy; do
   cp ${parcel_name}.parcel repository/${parcel_name}-${i}.parcel
 done
 
